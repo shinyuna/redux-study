@@ -50,7 +50,7 @@ import { createStore } from 'redux';
 const store = createStore(reducer);
 ```
 
-store는 5개의 메서드를 가지고 있습니다.
+### store의 메서드
 
 - dispatch: 상태는 오직 action객체를 전달한 store.dispatch를 통해서 업데이트 됩니다.
 - getState: 현재 상태 값을 리턴
