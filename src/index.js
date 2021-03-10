@@ -4,11 +4,14 @@ const add = document.getElementById('add');
 const minus = document.getElementById('minus');
 const number = document.getElementById('number');
 
+const ADD = 'ADD';
+const MINUS = 'MINUS';
+
 const countModifier = (state = 0, action) => {
   switch (action.type) {
-    case 'ADD':
+    case ADD:
       return state + 1;
-    case 'Minus':
+    case MINUS:
       return state - 1;
     default:
       return state;
@@ -23,8 +26,8 @@ const onChange = () => {
 countStore.subscribe(onChange);
 
 add.addEventListener('click', () => {
-  countStore.dispatch({ type: 'ADD' });
+  countStore.dispatch({ type: ADD });
 });
 minus.addEventListener('click', () => {
-  countStore.dispatch({ type: 'Minus' });
+  countStore.dispatch({ type: MINUS });
 });
