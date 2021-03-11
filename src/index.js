@@ -1,3 +1,17 @@
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import store from './store';
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);
+
+/* 바닐라 DOTO JS
 import { createStore } from 'redux';
 
 const form = document.querySelector('form');
@@ -12,7 +26,7 @@ const reducer = (state = [], action) => {
     case ADD_TODO:
       return [{ text: action.text, id: Date.now() }, ...state];
     case DELETE_TODO:
-      return state.filter(item => item.id != action.id);
+      return state.filter(item => item.id !== action.id);
     default:
       return state;
   }
@@ -65,3 +79,4 @@ const onSubmit = e => {
 };
 
 form.addEventListener('submit', onSubmit);
+*/

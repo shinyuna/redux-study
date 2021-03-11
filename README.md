@@ -61,3 +61,48 @@ el.addEventListener('click', () => {
   countStore.dispatch({ type: 'Add' });
 });
 ```
+
+## React Redux
+
+```shell
+npm i --save redux-react
+```
+
+store를 만드는 것 까진 바닐라 JS와 같지만, subscribe, dispatch를 하기 위해 redux-react가 필요하다.
+redux store를 앱에서 사용하기 위해 아래와 같이 코드를 작성해준다.
+
+```js
+import React from 'react';
+import { render } from 'react-dom';
+import { Provider } from 'react-redux';
+import App from './components/App';
+import store from './store';
+
+render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('app')
+);
+```
+
+### store와 component를 연결
+
+React Redux는 컴포넌트를 스토어에 연결할 수 있는 connect 함수를 제공합니다.
+connect 함수는 두개의 인수를 받습니다.
+
+mapStateToProps(state, ownProps): 스토어의 상태가 바뀔 때마다 호출되고, getState 역할을 합니다. 해당 컴포넌트에서 필요한 상태를 반환해야합니다. 두번째 인자는 해당 컴포넌트의 props.
+mapDispatchToProps(dispatch, ownProps): dispatch 작업을 전달하는 함수를 반환합니다.
+
+```js
+function mapStateToProps(state) {
+  return { toDos: state };
+}
+function mapDispatchToProps(dispatch) {
+  return {
+    addToDo: todo => dispatch(actionCreators.addToDo(todo)),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Home);
+```
