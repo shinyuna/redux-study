@@ -1,20 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { actionCreators } from '../store';
+import { deleteTodo, toggleTodo } from '../redux/actions';
 
-const ToDo = ({ text, id, onClickDeleteToDo }) => {
+const Todo = ({ text, id, done, onClickDelete, onClickToggle }) => {
   return (
     <li>
+      <button onClick={onClickToggle}>{done ? '🍯' : '⏱'}</button>
       <Link to={`/${id}`}>{text}</Link>
-      <button onClick={onClickDeleteToDo}>삭제</button>
+      <button onClick={onClickDelete}>🗑</button>
     </li>
   );
 };
 
-function mapDispatchToProps(dispatch, ownProps) {
+const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    onClickDeleteToDo: () => dispatch(actionCreators.deleteToDo(ownProps.id)),
+    onClickDelete: () => dispatch(deleteTodo(ownProps.id)),
+    onClickToggle: () => dispatch(toggleTodo(ownProps.id)),
   };
-}
-export default connect(null, mapDispatchToProps)(ToDo);
+};
+export default connect(null, mapDispatchToProps)(Todo);
