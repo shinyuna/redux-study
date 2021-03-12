@@ -6,7 +6,12 @@ import { deleteTodo, toggleTodo } from '../redux/actions';
 const Todo = ({ text, id, done, onClickDelete, onClickToggle }) => {
   return (
     <li>
-      <button onClick={onClickToggle}>{done ? '🍯' : '⏱'}</button>
+      <div className="checkbox">
+        <input id={`todo${id}`} type="checkbox" checked={done} onClick={onClickToggle} />
+        <label for={`todo${id}`}>
+          <i class="fa fa-check" />
+        </label>
+      </div>
       <Link to={`/${id}`}>{text}</Link>
       <button onClick={onClickDelete}>🗑</button>
     </li>
