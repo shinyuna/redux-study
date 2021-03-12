@@ -106,3 +106,66 @@ function mapDispatchToProps(dispatch) {
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 ```
+
+---
+
+## Redux Toolkit
+
+리덕스의 단점인 많은 양의 코드를 줄일 수 있는 package입니다.
+
+### Create Action
+
+action type과 action creator를 자동으로 생성해주고, dispatch를 통해 전달된 값을 payload 합니다.
+
+```js
+import { createAction } from '@reduxjs/toolkit';
+
+const addTodo = createAction('ADD');
+console.log(addTodo); // { type: "ADD", payload: undefined }
+```
+
+### Create Reducer
+
+toolkit을 사용하면 switch case를 사용할 필요가 없어지고,
+새로운 state를 리턴하거나 현재의 state를 mutate 할 수 있습니다.
+
+- state를 mutate하면 immer.js 아래에서 작동하기 때문에 알아서 새로운 state를 리턴해준다. 단 mutate를 할 땐 리턴을 해선 안된다. 리턴은 무조건 새로운 state만 가능합니다.
+
+```js
+const reducer = createReducer([], {
+  [addTodo]: (state, action) => {
+    state.push({ text: action.payload, id: Date.now() });
+  },
+  [deleteTodo]: (state, action) => state.filter(todo => todo.id !== action.payload),
+});
+```
+
+### Configure Store
+
+configureStore를 사용하면 Redux developer tools를 사용할 수 있습니다.
+
+- Redux developer tools은 리덕스를 사용하는 웹 사이트에서 해당 서비스의 state를 확인할 수 있습니다.
+
+```js
+const store = configureStore({ reducer });
+```
+
+### Create Slice
+
+create slice는 action, reducer 이 두 가지 역할을 모두 수행합니다.
+
+```js
+const toDos = createSlice({
+  name: "toDosReducer",
+  initialState: [],
+  reducers: {
+    add: (state, action) => {
+      state.push({ text: action.payload, id: Date.now() });
+    },
+    remove: (state, action) => state.filter(todo => todo.id !== action.payload),
+  }
+})
+
+const store = configureStore({ toDos.reducer });
+const { add, remove } = toDos.actions
+```
