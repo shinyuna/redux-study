@@ -5,7 +5,7 @@ function Detail({ toDo }) {
   return (
     <>
       <h1>{toDo?.text}</h1>
-      <p>Created at: {toDo?.id}</p>
+      <p>Memo... Comming soon...</p>
     </>
   );
 }

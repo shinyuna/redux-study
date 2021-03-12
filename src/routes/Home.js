@@ -7,7 +7,7 @@ function Home({ toDos }) {
   const sortList = toDos.sort((a, b) => a.done - b.done);
   return (
     <div className="container">
-      <h1 className="title">W R U D T? 📝 </h1>
+      <h1 className="title">W R U D T ?</h1>
       <AddTodo />
       <ul>
         {sortList && sortList.length ? (
