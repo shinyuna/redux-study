@@ -1,0 +1,110 @@
+html,
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans',
+    'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+#app {
+  width: 100%;
+}
+
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+}
+a {
+  text-decoration: none;
+  color: #333;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+.container {
+  width: 600px;
+  display: flex;
+  margin: 0 auto;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.title {
+  letter-spacing: 2px;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+form {
+  width: 100%;
+  height: 40px;
+  display: grid;
+  grid-template-columns: 85% 1fr;
+  column-gap: 0;
+  input {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 10px 15px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    outline: none;
+  }
+  button {
+    padding: 10px 15px;
+    color: #fff;
+    background: #ea4c89;
+    border-radius: 8px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    text-align: center;
+  }
+}
+ul {
+  width: 100%;
+  padding: 0;
+  list-style: none;
+  p {
+    text-align: center;
+  }
+  li {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    button {
+      background-color: transparent;
+      font-size: 20px;
+    }
+  }
+}
+
+.checkbox {
+  width: 1rem;
+  height: 1rem;
+  border: 2px solid #ea4c89;
+  input[type='checkbox'] {
+    display: none;
+    & + label {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      i {
+        opacity: 0;
+        font-size: 1rem;
+        color: #ea4c89;
+        transition: 0.1s all;
+        font-size: 0.9rem;
+      }
+    }
+    &:checked {
+      & + label {
+        i {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
